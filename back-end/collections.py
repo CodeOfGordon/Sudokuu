@@ -1,0 +1,3 @@
+class Collections:
+    ''' Board related '''
+    
