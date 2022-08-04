@@ -1,10 +1,9 @@
-import sys
+from back_end.collections_class import *
+from front_end.Windows_class import *
 
-sys.path.insert(0, '/Users/nicke/OneDrive/Documents/GitHub/Sudokuu/back-end')
-
-from collections_class import test_fun
 
 class Game:
     ''' Main game functions '''
-
+    def __init__(self):
+        pass
 test_fun()
