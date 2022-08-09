@@ -5,3 +5,5 @@ class Collections:
 
 def test_fun():
     print('hi')
+
+"test"
