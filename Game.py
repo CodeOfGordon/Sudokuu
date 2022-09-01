@@ -7,3 +7,7 @@ class Game:
     def __init__(self):
         pass
 test_fun()
+
+if __name__ == '__main__':
+    window = Windows()
+    window.root.mainloop()
