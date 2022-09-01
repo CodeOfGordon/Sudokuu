@@ -1,4 +1,6 @@
 from tkinter import *
+from PIL import ImageTk, Image # for image
+import os
 
 MENU_WIDTH = 1280
 MENU_HEIGHT = 720
@@ -14,6 +16,8 @@ class Windows:
         self.root.title("Sudokuu!")
         self.root.resizable(False,False)
 
+        self.submit()
+        self.emoji_ind()
         self.sudoku_board()
 
     def sudoku_board(self):
@@ -46,9 +50,30 @@ class Windows:
 
         for i in range(3):
             for j in range(3):
-                self.small_box = Frame(self.big_box) # Turn into entry box
-                self.small_box.config(width=self.small_box_width-self.small_box_border, height=self.small_box_height-self.small_box_border, bg="#E8E651")
+                self.small_box = Entry(self.big_box, width=10) # Turn into entry box
+                #self.small_box.config(width=self.small_box_width-self.small_box_border, height=self.small_box_height-self.small_box_border, bg="#E8E651")
                 self.small_box.place(x=j*(self.small_box_width+self.small_box_border), y=i*(self.small_box_height+self.small_box_border))
+        
+    def emoji_ind(self):
+        ''' Emoji that will indicate whether the game is won or not '''
+        emoji = Image.open("front_end/thinking_emoji.png")
+        emojier = ImageTk.PhotoImage(emoji)
+        
+
+        self.emoji_label = Label(image=emojier)
+        self.emoji_label.image = emojier
+        self.emoji_label.place(x=(MENU_WIDTH/1.5), y=(MENU_HEIGHT/15))
+    
+    def message_box(self):
+        ''' Message box that will display the message '''
+        self.message_box = Label(self.root, text="Solve the Sudoku puzzle!", font=("Arial", 20))
+        self.message_box.place(x=(MENU_WIDTH/1.5), y=(MENU_HEIGHT/2))
+
+    def submit(self):
+        ''' Submit button '''
+        self.submit_button = Button(self.root, text="Submit", font=("Arial", 20), bg="#32CD32")
+        self.submit_button.place(x=(MENU_WIDTH/1.7), y=(MENU_HEIGHT/2), width=((MENU_WIDTH/2)-BORDER_SIZE), height=50)
+        
 
 if __name__ == '__main__':
     window = Windows()
