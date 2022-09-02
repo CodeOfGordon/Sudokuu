@@ -16,7 +16,7 @@ class Windows:
         self.root.title("Sudokuu!")
         self.root.resizable(False,False)
 
-        self.submit()
+        self.submission()
         self.emoji_ind()
         self.sudoku_board()
 
@@ -32,28 +32,37 @@ class Windows:
         self.board.place(x=BORDER_SIZE, y=BORDER_SIZE)
         self.big_boxes()
 
-    def big_boxes(self):
+    def big_boxes(self): # PROBLEM
         ''' Big boxes inside sudoku board '''
         self.big_box_height = (self.board_height)/3.16
         self.big_box_width = (self.board_width)/3.16
+
+        self.all_entry_boxes = []
+
+
         for i in range(3):
             for j in range(3):
                 self.big_box = Frame(self.board, width=self.big_box_width, height=self.big_box_height, bg="#F2E055")
                 self.big_box.place(x=j*(self.big_box_width+BORDER_SIZE), y=i*(self.big_box_height+BORDER_SIZE))
                 self.small_boxes()
+                self.all_entry_boxes.append(self.square_entry_boxes) # HHERE
+                
 
-    def small_boxes(self):
+    def small_boxes(self): #PROBLEM
         ''' Small boxes inside sudoku board '''
         self.small_box_height = (self.big_box_height)/3
         self.small_box_width = (self.big_box_width)/3
         self.small_box_border = BORDER_SIZE/4
 
+        self.square_entry_boxes = []
+
         for i in range(3):
             for j in range(3):
-                self.small_box = Entry(self.big_box, width=10) # Turn into entry box
+                small_box = Entry(self.big_box, width=10) # Turn into entry box
                 #self.small_box.config(width=self.small_box_width-self.small_box_border, height=self.small_box_height-self.small_box_border, bg="#E8E651")
-                self.small_box.place(x=j*(self.small_box_width+self.small_box_border), y=i*(self.small_box_height+self.small_box_border))
-        
+                small_box.place(x=j*(self.small_box_width+self.small_box_border), y=i*(self.small_box_height+self.small_box_border))
+                self.square_entry_boxes.append(small_box) # HHERE
+
     def emoji_ind(self):
         ''' Emoji that will indicate whether the game is won or not '''
         emoji = Image.open("front_end/thinking_emoji.png")
@@ -69,7 +78,7 @@ class Windows:
         self.message_box = Label(self.root, text="Solve the Sudoku puzzle!", font=("Arial", 20))
         self.message_box.place(x=(MENU_WIDTH/1.5), y=(MENU_HEIGHT/2))
 
-    def submit(self):
+    def submission(self):
         ''' Submit button '''
         self.submit_button = Button(self.root, text="Submit", font=("Arial", 20), bg="#32CD32")
         self.submit_button.place(x=(MENU_WIDTH/1.7), y=(MENU_HEIGHT/2), width=((MENU_WIDTH/2)-BORDER_SIZE), height=50)

@@ -1,5 +1,7 @@
+from cgitb import small
 from back_end.collections_class import *
 from front_end.Windows_class import *
+from tkinter import *
 
 
 class Game:
@@ -7,21 +9,19 @@ class Game:
     def __init__(self):
         self.window = Windows()
         self.functionality()
-        pass
 
-    def receive_input(self):
+    def receive_input(self): # PROBLEM
         '''Receives input from the sudoku board'''
         board = []
-        for i in range(3):
-            for j in range(3):
-                small_box_num = self.window.small_boxes[i][j].get()
-                board.append(small_box_num)
-                print(small_box_num)
+        print(self.window.all_entry_boxes.get())
+        for box in self.window.entry_boxes:
+            #small_box_num = self.window.small_box.get()
+            board.append(box.get())
         print(board)
 
     def functionality(self):
         '''Functionality of the widgets'''
-        self.window.submit["command"] = self.receive_input()
+        self.window.submit_button["command"] = self.receive_input
 
 
 if __name__ == '__main__':
